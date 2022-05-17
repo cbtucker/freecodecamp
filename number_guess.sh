@@ -34,7 +34,7 @@ then
   INSERT_INTO_RESULT=$($PSQL "INSERT INTO games(user_id, best_score, total_games) VALUES($USER_ID, $NEW_SCORE, 1)")
 else
   #Had to use full command rather that $PSQL for some unknown reason
-  UPDATE_INFO_RESULT=$(psql --username=freecodecamp --dbname=number_guess -t --no-align -c "UPDATE games SET (best_score, total_games) = ($NEW_SCORE, total_games + 1) WHERE user_id = $USER_ID")
+  UPDATE_INFO_RESULT=$($PSQL "UPDATE games SET (best_score, total_games) = ($NEW_SCORE, total_games + 1) WHERE user_id = $USER_ID")
 fi
 }
 
@@ -50,7 +50,7 @@ then
   USER_ID=$($PSQL "SELECT user_id FROM users WHERE name = '$USERNAME'")
 
 else
-  IFS='|'; read USER_ID BEST_SCORE TOTAL_GAMES <<< "$USERINFO"
+  IFS='|' read USER_ID BEST_SCORE TOTAL_GAMES <<< "$USERINFO"
   echo "Welcome back, $USERNAME! You have played $TOTAL_GAMES games, and your best game took $BEST_SCORE guesses."
 fi
 
