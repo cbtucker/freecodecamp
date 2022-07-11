@@ -1,0 +1,22 @@
+{
+  "name": "url-short",
+  "version": "1.0.0",
+  "description": "",
+  "main": "url-short.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/url-short.js"
+  },
+  "keywords": [],
+  "author": "Cole Tucker",
+  "license": "Affero GPL",
+  "devDependencies": {
+    "nodemon": "^1.3.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4"
+  }
+}
