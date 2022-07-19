@@ -79,16 +79,11 @@ app.get("/api/users/:_id/logs", (req, res) => {
 			   count: logs.length,
 			   _id: userId,
 			   log: logs.map(record => {
+
 			     const dateString = record.date.toISOString().split('T')[0].replace(/-/g, '\/');
-			     //should be a better way to do this, but I haven't found it
-			     const newRecord = {_id: record._id,
-						userId: record.userId,
-						description: record.description,
-						duration: record.duration,
-						date: new Date(dateString).toDateString()}
-			     console.log(newRecord);
-			     return newRecord;
-			   })});
+			     return Object.assign({}, record, {date: new Date(dateString).toDateString()});
+			   })
+		 });
 	       })
 	       .catch(err => console.error(err));
 });
